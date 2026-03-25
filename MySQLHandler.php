@@ -234,7 +234,7 @@ class MySQLHandler {
 
 		    return $lResult;
 		} catch (Exception $e) {
-			throw new Exception($this->mCustomErrorHandler->getExceptionMessage($e, "Query: " . $this->mEncoder->encodeForHTML($pQueryString)));
+			throw new Exception("Database error occurred");
 		}// end function
 
 	}// end private function executeQuery
