@@ -324,8 +324,14 @@ class MySQLHandler {
 	}//end function
 
 	public function executeQuery($pQueryString){
-		return $this->doExecuteQuery($pQueryString);
-	}// end public function executeQuery
+
+    // Prevent SQL Injection (basic mitigation)
+    if($this->stopSQLInjection){
+        $pQueryString = $this->mMySQLConnection->real_escape_string($pQueryString);
+    }
+
+    return $this->doExecuteQuery($pQueryString);
+    }// end public function executeQuery
 
 	public function closeDatabaseConnection(){
 		$this->doCloseDatabaseConnection();
